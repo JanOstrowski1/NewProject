@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #hero {
+            background-color: red;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="hero"></div>
+<script>
+
+    var LEFT_KEY=37;
+    var UP_KEY = 38;
+    var RIGHT_KEY=39;
+    var DOWN_KEY = 40;
+    var HERO_MOVEMENT= 5;
+
+    var hero = new Object();
+    hero.element='hero';
+    hero.x =250;
+    hero.y =250;
+
+    var controller = new Object();
+
+    var lastLoopRun = 0;
+
+    function toggleKey(keyCode,isPressed) {
+
+        if( keyCode == LEFT_KEY){
+            controller.left= isPressed;
+        }
+        if( keyCode == RIGHT_KEY){
+            controller.right= isPressed;
+        }
+        if( keyCode == UP_KEY){
+            controller.up= isPressed;
+        }
+        if( keyCode == DOWN_KEY){
+            controller.down= isPressed;
+        }
+
+    }
+
+    function handleControls() {
+        if(controller.up){
+            hero.y -=HERO_MOVEMENT;
+        }
+        if(controller.down){
+            hero.y +=HERO_MOVEMENT;
+        }
+        if(controller.left){
+            hero.x -=HERO_MOVEMENT;
+        }
+        if(controller.right){
+            hero.x +=HERO_MOVEMENT;
+        }
+    }
+
+    function showSprite() {
+        setPosition(hero);
+    }
+
+    function setPosition(sprite) {
+        var e = document.getElementById(sprite.element);
+        e.style.left= sprite.x +'px';
+        e.style.top= sprite.y +'px';
+    }
+    function loop(){
+        if(new Date().getTime() - lastLoopRun >40 ){
+            handleControls();
+            showSprite();
+            lastLoopRun = new Date().getTime();
+        }
+        setTimeout('loop();',2)
+    }
+
+    document.onkeydown= function (ev) {
+        toggleKey(ev.keyCode,true);
+    };
+    document.onkeyup =function (ev) {
+        toggleKey(ev.keyCode,false);
+    };
+
+    setPosition(hero);
+    loop();
+</script>
+
+</body>
+</html>

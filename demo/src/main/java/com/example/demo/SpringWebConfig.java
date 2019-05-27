@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +12,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @Configuration
 @ComponentScan({"com.example.demo"})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
+
+
     @Bean
     public FreeMarkerViewResolver freemarkerViewResolver() {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
@@ -24,7 +26,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public FreeMarkerConfigurer freemarkerConfig() {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
-        freeMarkerConfigurer.setTemplateLoaderPath("/resources/templates/");
+        freeMarkerConfigurer.setTemplateLoaderPath("resources/templates");
         return freeMarkerConfigurer;
     }
 
