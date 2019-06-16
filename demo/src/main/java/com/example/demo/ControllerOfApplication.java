@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ControllerOfApplication {
 
     @GetMapping("/freemarker")
-    public String freeMarker(Model model){
-        model.addAttribute("message","SpringBoot + Freemarker");
+    public String freeMarker(Model model) {
+        model.addAttribute("message", "SpringBoot + Freemarker");
         return "freemarker";
     }
 
     @RequestMapping(value = "/cars", method = RequestMethod.GET)
     public String init(@ModelAttribute("model") ModelMap model) {
-        model.addAttribute("message","SpringBoot + Freemarker");
+        model.addAttribute("message", "SpringBoot + Freemarker");
         return "index";
     }
 
